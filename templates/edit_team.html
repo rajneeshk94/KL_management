@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Edit Team
+{% endblock title %}
+
+{% block body %}
+<body style = 'background:url("/static/b44.png");'>
+
+<div class="row">
+
+<div class="col-md-4">
+</div>
+
+<div class="col-md-4">
+<br>
+
+<h4 class="text-center text-white" style = "font: 25px Times New Roman, sans-serif;">Update Team</h4>
+<br>
+
+
+<form action="/edit_team/{{posts.tid}}" method="post" class="jumbotron">
+
+  <div class="form-group">
+    <input type="number" class="form-control" id="tid" name="tid" placeholder="Enter Team ID" value = "{{posts.pid}}" hidden>
+    <label for="Tname" class="bmd-label-static">
+      Team Name
+    </label>
+    <input type="text" class="form-control" id="Tname" name="Tname" value = "{{posts.Tname}}" placeholder="Enter Player Name" required>
+  
+  </div>
+
+  <div class="form-group">
+    <label for="HCity" class="bmd-label-static">
+      Home City
+    </label>
+    <input type="text" class="form-control" id="HCity" name="HCity" value = "{{posts.HCity}}" placeholder="Enter Player Age" required>
+    <input type="number" class="form-control" id="tid" name="tid" value = "{{posts.tid}}" placeholder="Enter Player Age" required hidden>
+  </div>
+
+ <div class="form-group">          
+  <label for="Total_matches" class="bmd-label-static">
+    Total Matches
+  </label>                                     
+  <input type="number" class="form-control" id="Total_matches" name="Total_matches" value = "{{posts.Total_matches}}" placeholder="Enter Player Age" required>
+ </div>
+
+ <div class="form-group">          
+    <label for="Total_wins" class="bmd-label-static">
+      Total Wins
+    </label>                                     
+    <input type="number" class="form-control" id="Total_wins" name="Total_wins" value = "{{posts.Total_wins}}" placeholder="Enter Player Age" required>
+   </div>
+
+  
+  <button type="submit" class="btn btn-warning btn-sm btn-block">Update</button>
+</form>
+
+
+
+
+</div>
+<div class="col-md-4"></div>
+</div>
+
+
+{% endblock body %}

@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% block title %}
+New Match
+{% endblock title %}
+
+{% block body %}
+<body style = 'background:url("static/b44.png");'>
+
+<div class="container mt-3">
+<div class="row">
+<div class="col-md-3">
+
+</div>
+<div class="col-md-6">
+
+<h4 class="text-center text-white" style = "font: 25px Times New Roman, sans-serif;">Add New Match</h4>
+<br>
+
+
+{% with messages=get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+
+<div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+    {{message}}
+
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+</div>
+
+
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+
+
+
+<form action="/add_match" method="post" class="jumbotron">
+  
+    <div class="form-group">
+  
+        <input type="number" class="form-control" id="mno" name="mno" placeholder="Enter Match No." required>
+      
+      </div>
+  <div class="form-group">
+  
+    <select class="form-control" id="Venue" name="Venue"  required>
+        <option selected>Select Venue</option>
+        {% for post in teams %}
+        <option value="{{ post.HCity }}">{{post.HCity}}</option>
+        {% endfor %}
+ 
+      </select>
+  
+  </div>
+
+  <div class="form-group">
+  
+    <input type="date" class="form-control" id="Date" name="Date" placeholder="Enter Date" required>
+  
+  </div>
+
+  <div class="form-group">
+  
+    <input type="time" class="form-control" id="Time" name="Time" placeholder="Enter Time" required>
+  
+  </div>
+
+  <div class="form-group">
+  
+    <select class="form-control" id="Team_1" name="Team_1"  required>
+        <option selected>Select Team 1</option>
+        {% for post in teams1 %}
+        <option value="{{ post.tid }}">{{post.TName}}</option>
+        {% endfor %}
+ 
+      </select>
+  
+  </div>
+
+  <div class="form-group">
+  
+    <select class="form-control" id="Team_2" name="Team_2"  required>
+        <option selected>Select Team 2</option>
+        {% for post in teams2 %}
+        <option value="{{ post.tid }}">{{post.TName}}</option>
+        {% endfor %}
+ 
+      </select>
+  
+  </div>
+
+  <button type="submit" class="btn btn-success btn-sm btn-block">Add</button>
+</form>
+
+</div>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+{% endblock body %}

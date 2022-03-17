@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Edit Player
+{% endblock title %}
+
+{% block body %}
+<body style = 'background:url("/static/b44.png");'>
+
+<div class="row">
+
+<div class="col-md-4">
+</div>
+
+<div class="col-md-4">
+<br>
+
+<h4 class="text-center text-white" style = "font: 25px Times New Roman, sans-serif;">Update Player</h4>
+<br>
+
+
+<form action="/edit/{{posts.pid}}" method="post" class="jumbotron">
+
+  <div class="form-group">
+    <input type="number" class="form-control" id="pid" name="pid" placeholder="Enter Player ID" value = "{{posts.pid}}" hidden>
+    <label for="name" class="bmd-label-static">
+      Name
+    </label>
+    <input type="text" class="form-control" id="name" name="name" value = "{{posts.Name}}" placeholder="Enter Player Name" required>
+  
+  </div>
+
+  <div class="form-group">
+    <label for="age" class="bmd-label-static">
+      Age
+    </label>
+    <input type="number" class="form-control" id="age" name="age" value = "{{posts.Age}}" placeholder="Enter Player Age" required>
+  
+  </div>
+
+ <div class="form-group">          
+  <label for="tid" class="bmd-label-static">
+    Team
+  </label>                                     
+<select class="form-control" id="tid" name="tid" required>
+    {% for player,team_name in p_team %}
+    <option value="{{ posts.tid }}" selected hidden>{{team_name}}</option>   
+    {% endfor %}
+        {% for post in teams %}
+        <option value="{{ post.tid }}">{{post.TName}}</option>
+        {% endfor %}
+ 
+      </select>
+ </div>
+
+ <div class="form-group">          
+  <label for="type" class="bmd-label-static">
+    Player Type
+  </label>                                  
+    <select class="form-control" id="type" name="type" value = "{{posts.Type}}" required>
+            {% for type, team in p_type %}   
+            <option value = {{type}} selected hidden>{{type}}</option>
+            {% endfor %}
+            <option value="Raider">Raider</option>
+            <option value="Defender">Defender</option>
+            <option value="All Rounder">All Rounder</option>
+          </select>
+     </div>
+
+  
+  <button type="submit" class="btn btn-warning btn-sm btn-block">Update</button>
+</form>
+
+
+
+
+</div>
+<div class="col-md-4"></div>
+</div>
+
+
+{% endblock body %}

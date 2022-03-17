@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Player Stats
+{% endblock title %}
+
+{% block body %}
+{% with messages=get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+
+<div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+    {{message}}
+
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Player ID</th>
+      <th scope="col">Total Matches</th>
+      <th scope="col">Total Points</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+
+    </tr>
+  </thead>
+  <tbody>
+  {% for post in query %}
+    <tr>
+        <th scope="row">{{post.pid}}</th>
+        <td>{{post.Total_matches}}</td>
+        <td>{{post.Total_points}}</td>
+        <td><a href="/edit_playerstats/{{post.pid}}"><button class="btn btn-primary">Edit </button> </a> </td>
+        <td><a href="/delete_playerstats/{{post.pid}}"><button onclick="return confirm('Are you sure to delete');" class="btn btn-danger">Delete </button> </a> </td>
+    </tr>
+{% endfor %}
+  
+  </tbody>
+</table>
+
+<div style = "margin: auto;
+  width: 10%;
+  padding: 10px;">
+  <button type="button" class="btn btn-success" onclick="location.href = '/add_playerstats'">Add New</button>
+</div>
+
+
+{% endblock body %}

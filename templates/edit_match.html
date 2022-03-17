@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Edit Match
+{% endblock title %}
+
+{% block body %}
+<body style = 'background:url("/static/b44.png");'>
+
+<div class="row">
+
+<div class="col-md-4">
+</div>
+
+<div class="col-md-4">
+<br>
+
+<h4 class="text-center text-white" style = "font: 25px Times New Roman, sans-serif;">Update Match</h4>
+<br>
+
+
+<form action="/edit_match/{{posts.mno}}" method="post" class="jumbotron">
+
+  <div class="form-group">
+    <input type="number" class="form-control" id="pid" name="pid" placeholder="Enter Player ID" value = "{{posts.mno}}" hidden>
+    <label for="Venue" class="bmd-label-static">
+      Venue
+    </label>
+    <select class="form-control" id="Venue" name="Venue" value = "{{posts.Venue}}" required>
+        {% for type, ven in venue %}
+        <option value="{{ven}}" selected hidden>{{ven}}</option>
+        {% endfor %}
+        {% for city in teams %}
+        <option value="{{ city.HCity }}">{{city.HCity}}</option>
+        {% endfor %}
+      </select>
+  
+  </div>
+
+  <div class="form-group">
+    <label for="Date" class="bmd-label-static">
+        Date
+    </label>
+    <input type="date" class="form-control" id="Date" name="Date" value = "{{posts.Date}}" placeholder="Enter Player Age" required>
+  
+  </div>
+
+  <div class="form-group">
+    <label for="Time" class="bmd-label-static">
+        Time
+    </label>
+    <input type="time" class="form-control" id="Time" name="Time" value = "{{posts.Time}}" placeholder="Enter Player Age" required>
+  
+  </div>
+
+  <div class="form-group">
+    <label for="Team_1" class="bmd-label-static">
+        Team 1
+    </label>
+    <select class="form-control" id="Team_1" name="Team_1" value = "{{posts.Team_1}}" required>
+        {% for type, ven in team_name1 %}
+        <option value="{{ type.Team_1 }}" selected hidden>{{ven}}</option>   
+        {% endfor %}
+        {% for post in teams1 %}
+        <option value="{{ post.tid }}">{{post.TName}}</option>
+        {% endfor %}
+      </select>
+  
+  </div>
+
+  <div class="form-group">
+    <label for="Team_2" class="bmd-label-static">
+        Team 2
+    </label>
+    <select class="form-control" id="Team_2" name="Team_2" value = "{{posts.Team_2}}" required>
+        {% for type, ven in team_name2 %}   
+        <option value="{{ type.Team_2 }}" selected hidden>{{ven}}</option>
+        {% endfor %}
+        {% for post in teams2 %}
+        <option value="{{ post.tid }}">{{post.TName}}</option>
+        {% endfor %}
+      </select>
+  
+  </div>
+  
+
+  
+  <button type="submit" class="btn btn-warning btn-sm btn-block">Update</button>
+</form>
+
+
+
+
+</div>
+<div class="col-md-4"></div>
+</div>
+
+
+{% endblock body %}

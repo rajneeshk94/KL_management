@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Matches
+{% endblock title %}
+
+{% block body %}
+{% with messages=get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+
+<div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+    {{message}}
+
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Match No.</th>
+      <th scope="col">Venue</th>
+      <th scope="col">Date</th>
+      <th scope="col">Time</th>
+      <th scope="col">Team 1</th>
+      <th scope="col">Team 2</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+
+    </tr>
+  </thead>
+  <tbody>
+  {% for post in query %}
+    <tr>
+        <th scope="row">{{post.Mno}}</th>
+        <td>{{post.Venue}}</td>
+        <td>{{post.Date}}</td>
+        <td>{{post.Time}}</td>
+        <td>{{post.Team_1}}</td>
+        <td>{{post.Team_2}}</td>
+        <td><a href="/edit_match/{{post.Mno}}"><button class="btn btn-primary">Edit </button> </a> </td>
+        <td><a href="/delete_match/{{post.Mno}}"><button onclick="return confirm('Are you sure to delete player');" class="btn btn-danger">Delete </button> </a> </td>
+    </tr>
+{% endfor %}
+  
+  </tbody>
+</table>
+
+<div style = "margin: auto;
+  width: 10%;
+  padding: 10px;">
+  <button type="button" class="btn btn-success" onclick="location.href = '/add_match'">Add Match</button>
+</div>
+
+
+{% endblock body %}

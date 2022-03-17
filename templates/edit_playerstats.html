@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Edit Player Stats
+{% endblock title %}
+
+{% block body %}
+<body style = 'background:url("/static/b44.png");'>
+
+<div class="row">
+
+<div class="col-md-4">
+</div>
+
+<div class="col-md-4">
+<br>
+
+<h4 class="text-center text-white" style = "font: 25px Times New Roman, sans-serif;">Update Player Stats</h4>
+<br>
+
+
+<form action="/edit_playerstats/{{posts.pid}}" method="post" class="jumbotron">
+
+  <div class="form-group">
+    <input type="number" class="form-control" id="pid" name="pid" placeholder="Enter Player ID" value = "{{posts.pid}}" hidden>
+    <label for="Total_matches" class="bmd-label-static">
+      Total Matches
+    </label>
+    <input type="number" class="form-control" id="Total_matches" name="Total_matches" value = "{{posts.Total_matches}}" placeholder="Enter Player Name" required>
+  
+  </div>
+
+  <div class="form-group">
+    <input type="number" class="form-control" id="pid" name="pid" placeholder="Enter Player ID" value = "{{posts.pid}}" hidden>
+    <label for="Total_points" class="bmd-label-static">
+      Total Points
+    </label>
+    <input type="number" class="form-control" id="Total_points" name="Total_points" value = "{{posts.Total_points}}" placeholder="Enter Player Name" required>
+  
+  </div>
+  
+  <button type="submit" class="btn btn-warning btn-sm btn-block">Update</button>
+</form>
+
+
+
+
+</div>
+<div class="col-md-4"></div>
+</div>
+
+
+{% endblock body %}

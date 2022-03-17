@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Edit Team Stats
+{% endblock title %}
+
+{% block body %}
+<body style = 'background:url("/static/b44.png");'>
+
+<div class="row">
+
+<div class="col-md-4">
+</div>
+
+<div class="col-md-4">
+<br>
+
+<h4 class="text-center text-white" style = "font: 25px Times New Roman, sans-serif;">Update Team Stats</h4>
+<br>
+
+
+<form action="/edit_teamstats/{{posts.tid}}" method="post" class="jumbotron">
+
+  <div class="form-group">
+    <input type="number" class="form-control" id="tid" name="tid" placeholder="Enter Team ID" value = "{{posts.tid}}" hidden>
+    <label for="mno" class="bmd-label-static">
+      Match No.
+    </label>
+    <select class="form-control" id="mno" name="mno"  required placeholder = {{posts.mno}}>
+        <option value="{{posts.mno}}" selected hidden>{{posts.mno}}</option>
+        {% for post in matches %}
+        <option value="{{ post.Mno }}">{{post.Mno}}</option>
+        {% endfor %}
+    </select>
+  
+  </div>
+
+  <div class="form-group">
+    <label for="Status" class="bmd-label-static">
+      Result
+    </label>
+    <select class="form-control" id="Status" name="Status"  required placeholder = {{posts.Status}}>
+        <option value="{{ posts.Status }}" selected hidden>{{posts.Status}}</option>
+        <option value="W">W</option>
+        <option value="L">L</option>
+    </select>
+  
+  </div>
+  
+  <button type="submit" class="btn btn-warning btn-sm btn-block">Update</button>
+</form>
+
+
+
+
+</div>
+<div class="col-md-4"></div>
+</div>
+
+
+{% endblock body %}

@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block title %}
+New Team Stat
+{% endblock title %}
+
+{% block body %}
+<body style = 'background:url("static/b44.png");'>
+
+<div class="container mt-3">
+<div class="row">
+<div class="col-md-3">
+
+</div>
+<div class="col-md-6">
+
+<h4 class="text-center text-white" style = "font: 25px Times New Roman, sans-serif;">Add New Team Stat</h4>
+<br>
+
+
+{% with messages=get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+
+<div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+    {{message}}
+
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+</div>
+
+
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+
+
+
+<form action="/add_teamstats" method="post" class="jumbotron">
+  
+    <div class="form-group">
+  
+        <select class="form-control" id="tid" name="tid"  required>
+        <option selected disabled>Select Team</option>
+        {% for post in teams %}
+        <option value="{{ post.tid }}">{{post.TName}}</option>
+        {% endfor %}
+ 
+      </select>
+      
+      </div>
+  <div class="form-group">
+  
+    <select class="form-control" id="mno" name="mno"  required>
+        <option selected disabled>Select Match No.</option>
+        {% for post in matches %}
+        <option value="{{ post.Mno }}">{{post.Mno}}</option>
+        {% endfor %}
+    </select>
+  
+  </div>
+
+  <div class="form-group">
+  
+    <select class="form-control" id="Status" name="Status"  required>
+        <option selected disabled>Select Result</option>
+        <option value="W">W</option>
+        <option value="L">L</option>
+ 
+      </select>
+  
+  </div>
+
+  <button type="submit" class="btn btn-success btn-sm btn-block">Add</button>
+</form>
+
+</div>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+{% endblock body %}
